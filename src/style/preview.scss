@@ -1,0 +1,70 @@
+.frontend-kit {
+  &__preview {
+    padding: 2rem;
+    background-color: var(--nested-pure__enabled__default__fill, var(--plain-pure__enabled__default__fill));
+
+    &-container {
+      overflow: auto;
+    }
+
+    &.-single {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      min-height: calc(100vh);
+
+      .-reduced & {
+        min-height: calc(100vh - 4.0625rem);
+      }
+
+      // Special styling for Divider component's Preview
+      &[data-title='divider'] .component-preview__html > .-row {
+        display: flex;
+      }
+
+      // Special styling for Image component's Preview
+      &[data-title='image'] .component-preview__html {
+        width: 50%;
+      }
+
+      // Special styling for Accordion component's Preview
+      &[data-title='accordion'] {
+        align-items: flex-start;
+
+        .component-preview__html {
+          width: 50%;
+        }
+      }
+
+      // Special styling for Selectable Tile component's Preview
+      &[data-title='selectable tile'] .component-preview__html {
+        width: 180px;
+      }
+
+      // Special styling for Tab Navigation component's Preview
+      &[data-title='tab navigation'] .component-preview__html {
+        width: 100%;
+      }
+    }
+
+    .container.-row {
+      display: flex;
+    }
+  }
+
+  &__fullpage-preview {
+    min-height: 100vh;
+  }
+
+  &__nested-preview-container,
+  &__nested-background-wrapper {
+    padding: 2rem;
+  }
+}
+
+.frontend-kit__fullpage-preview {
+  min-height: 100vh;
+  position: relative;
+}

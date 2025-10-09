@@ -1,0 +1,51 @@
+.frontend-kit-platform {
+  overflow-x: hidden;
+}
+
+.frontend-kit__landing-page {
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+  }
+
+  .frontend-kit__status-badges {
+    margin-bottom: 1.5rem;
+
+    img {
+      margin-right: 1rem;
+    }
+  }
+
+  .frontend-kit__buttons-wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .a-divider {
+    margin: 2.5rem 0;
+  }
+
+  .frontend-kit__atomic-design-picture {
+    margin-bottom: 1.5rem;
+
+    img {
+      width: 100%;
+    }
+
+    figure {
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 4rem;
+    }
+  }
+}

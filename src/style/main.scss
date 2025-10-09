@@ -1,0 +1,25 @@
+/* stylelint-disable selector-no-qualifying-type */
+@use "./reset.scss";
+@use "./index.scss";
+@use "./preview.scss";
+@use "../content/content.scss";
+@use "../content/description/description.scss";
+@use "../content/tableContent/tableContent.scss";
+@use "../content/variant/variant.scss";
+@use "../content/variant/commandBar/commandBar.scss";
+@use "../header/header.scss";
+@use "../footer/footer.scss";
+@use "../layout/layout.scss";
+@use "../navigation/navigation.scss";
+
+code,
+:not(pre) > code[class*="language-"] {
+  white-space: nowrap;
+  word-wrap: none;
+  font-family: monospace;
+  font-size: 1rem;
+  border-radius: 0;
+  padding: 0.15rem 0.4rem;
+  position: relative;
+  bottom: 1px;
+}
