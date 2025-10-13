@@ -1,3 +1,4 @@
+// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
@@ -7,7 +8,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3090,
-    allowedHosts: ["https://dev.cmp-web-app.bsh-ia.com/"],
+
+    hmr: {
+      host: "localhost",
+      port: 3090,
+      protocol: "ws",
+    },
   },
   resolve: {
     alias: {

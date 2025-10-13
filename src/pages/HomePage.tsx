@@ -1,52 +1,318 @@
-import DrawerUsage from '@/examples/DrawerUsage';
-import React from 'react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Code2,
+  Palette,
+  Zap,
+  Shield,
+  Sparkles,
+  ArrowRight,
+  Check,
+  Boxes,
+  Settings,
+  Lightbulb,
+} from "lucide-react";
 
 const HomePage: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.6,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
+      },
+    },
+  };
+
+  const cardHover = {
+    scale: 1.05,
+    transition: { duration: 0.2 },
+  };
+
+  const technologies = [
+    {
+      name: "React 19",
+      color: "bg-ui_blue-100 text-ui_blue-900",
+      icon: "⚛️",
+      description: "Latest React with modern features",
+    },
+    {
+      name: "TypeScript",
+      color: "bg-ui_blue-100 text-ui_blue-900",
+      icon: "📘",
+      description: "Type-safe development",
+    },
+    {
+      name: "Redux Toolkit",
+      color: "bg-secondary-violet/20 text-secondary-violet",
+      icon: "🗄️",
+      description: "State management made simple",
+    },
+    {
+      name: "React Router v7",
+      color: "bg-secondary-sunset/20 text-secondary-sunset",
+      icon: "🛣️",
+      description: "Modern routing solution",
+    },
+    {
+      name: "Tailwind CSS",
+      color: "bg-ui_green-100 text-ui_green-900",
+      icon: "🎨",
+      description: "Utility-first CSS framework",
+    },
+    {
+      name: "Framer Motion",
+      color: "bg-ui_yellow-100 text-ui_yellow-900",
+      icon: "✨",
+      description: "Smooth animations",
+    },
+    {
+      name: "Vite",
+      color: "bg-ui_orange-100 text-ui_orange-900",
+      icon: "⚡",
+      description: "Lightning fast build tool",
+    },
+    {
+      name: "Lucide Icons",
+      color: "bg-neutral-100 text-neutral-900",
+      icon: "🎯",
+      description: "Beautiful icon library",
+    },
+  ];
+
+  const features = [
+    {
+      icon: <Code2 className="w-space-24 h-space-24" />,
+      title: "Modern Stack",
+      description:
+        "Built with the latest React 19, TypeScript, and modern development tools for optimal performance.",
+      color: "bg-ui_blue-50 border-ui_blue-200 text-ui_blue-900",
+    },
+    {
+      icon: <Palette className="w-space-24 h-space-24" />,
+      title: "BSH Design System",
+      description:
+        "Complete design system with carefully crafted spacing, colors, typography, and components.",
+      color: "bg-brand-orange/10 border-brand-orange/20 text-brand-orange",
+    },
+    {
+      icon: <Zap className="w-space-24 h-space-24" />,
+      title: "Developer Experience",
+      description:
+        "Pre-configured ESLint, TypeScript, and Vite for a smooth development workflow.",
+      color: "bg-ui_yellow-50 border-ui_yellow-200 text-ui_yellow-900",
+    },
+    {
+      icon: <Shield className="w-space-24 h-space-24" />,
+      title: "Type Safety",
+      description:
+        "Full TypeScript integration with strict typing for robust, maintainable code.",
+      color: "bg-ui_green-50 border-ui_green-200 text-ui_green-900",
+    },
+    {
+      icon: <Sparkles className="w-space-24 h-space-24" />,
+      title: "Smooth Animations",
+      description:
+        "Framer Motion integration for delightful user interactions and micro-animations.",
+      color:
+        "bg-secondary-violet/10 border-secondary-violet/20 text-secondary-violet",
+    },
+    {
+      icon: <Boxes className="w-space-24 h-space-24" />,
+      title: "Component Library",
+      description:
+        "Pre-built components following BSH design principles with variants and proper styling.",
+      color: "bg-ui_red-50 border-ui_red-200 text-ui_red-900",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-dark-bg flex flex-col">
-      <DrawerUsage />
-        {/* <div className="bg-brand-white dark:bg-dark-surface shadow-raised rounded-component-md p-space-40">
-          <h3 className="text-h5 text-neutral-900 dark:text-dark-text_primary mb-space-24">
-            Built with powerful technologies:
-          </h3>
-          <div className="flex flex-wrap justify-center gap-space-16">
-            <div className="flex items-center gap-space-8 px-inline-padding py-atom-padding rounded-full bg-ui_blue-100 text-ui_blue-900 text-body-m-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-space-16 h-space-16">
-                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clipRule="evenodd" />
-              </svg>
-              React
-            </div>
+    <div className="min-h-screen bg-neutral-50 dark:bg-dark-bg">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-7xl mx-auto px-grid-margin-mobile tablet:px-grid-margin-tablet web-m:px-grid-margin-desktop py-space-40"
+      >
+        {/* Hero Section */}
+        <motion.div
+          variants={itemVariants}
+          className="text-center mb-space-120"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-space-8 px-space-16 py-space-8 bg-brand-orange/10 text-brand-orange rounded-full text-body-s-bold mb-space-24 border border-brand-orange/20"
+          >
+            <Sparkles className="w-space-16 h-space-16" />
+            BSH React Template v1.0
+          </motion.div>
 
-            <div className="flex items-center gap-space-8 px-inline-padding py-atom-padding rounded-full bg-ui_blue-100 text-ui_blue-900 text-body-m-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-space-16 h-space-16">
-                <path d="M5.474 19.982A4.5 4.5 0 0 0 10.435 21a4.5 4.5 0 0 0 4.34-5.454c.486-.067.972-.095 1.46-.095a4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 0-8.914 0 4.502 4.502 0 0 0 1.72 8.783L6.28 17.17a.75.75 0 0 0-.964.007l-.465.341ZM15.75 14.25h-.007a.75.75 0 0 1-.743-.65l-.338-2.251a.75.75 0 0 1 .743-.85h.341c.071 0 .142.003.212.008.258.017.514.043.766.079a4.5 4.5 0 0 0 .548-1.764c.05-.216.075-.436.075-.66a.75.75 0 0 0-.75-.75h-.083a.75.75 0 0 0-.75.75v.393c0 .416-.336.752-.752.752-.415 0-.75-.336-.75-.752V9.75a.75.75 0 0 0-1.5 0v.487c0 1.144.936 2.074 2.073 2.074.75 0 1.428-.39 1.791-.983l.256-.425a.75.75 0 0 0-.464-1.291.75.75 0 0 0-1.291.464l-.256.425a1.5 1.5 0 0 1-.417.653 1.5 1.5 0 0 1-1.077.387c-1.125 0-2.046-.867-2.07-1.996a.75.75 0 0 0-.745-.754h-.007a.75.75 0 0 0-.743.65l-.339 2.251a.75.75 0 0 0 .744.85h.341c.071 0 .142.003.211.008.258.017.514.043.766.079a4.5 4.5 0 0 0 .548-1.764c.05-.216.075-.436.075-.66a.75.75 0 0 0-.75-.75h-.083a.75.75 0 0 0-.75.75v.393c0 .416-.336.752-.752.752-.415 0-.75-.336-.75-.752V9.75a.75.75 0 0 0-1.5 0V9a4.502 4.502 0 0 0-4.34 5.454c-.486.067-.972.095-1.46.095a4.5 4.5 0 0 0-.528-.027 4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 0 4.417-5.263l.338-2.251a.75.75 0 0 0-.743-.85h-.342c-.071 0-.142-.003-.211-.008-.258-.017-.514-.043-.766-.079a4.5 4.5 0 0 0-.548 1.764c-.05.216-.075.436-.075.66a.75.75 0 0 0 .75.75h.083a.75.75 0 0 0 .75-.75v-.393c0-.416.336-.752.752-.752.415 0 .75.336.75.752V15a.75.75 0 0 0 1.5 0V14.25ZM6.75 12h-.007a.75.75 0 0 1-.743-.65l-.338-2.251a.75.75 0 0 1 .743-.85h.341c.071 0 .142.003.212.008.258.017.514.043.766.079a4.5 4.5 0 0 0 .548-1.764c.05-.216.075-.436.075-.66a.75.75 0 0 0-.75-.75h-.083a.75.75 0 0 0-.75.75v.393c0 .416-.336.752-.752.752-.415 0-.75-.336-.75-.752V7.5a.75.75 0 0 0-1.5 0v.487c0 1.144.936 2.074 2.073 2.074.75 0 1.428-.39 1.791-.983l.256-.425a.75.75 0 0 0-.464-1.291.75.75 0 0 0-1.291.464l-.256.425a1.5 1.5 0 0 1-.417.653 1.5 1.5 0 0 1-1.077.387c-1.125 0-2.046-.867-2.07-1.996a.75.75 0 0 0-.745-.754h-.007a.75.75 0 0 0-.743.65l-.339 2.251a.75.75 0 0 0 .744.85h.341c.071 0 .142.003.211.008-.258-.017-.514-.043-.766-.079a4.5 4.5 0 0 0 .548-1.764c-.05.216-.075-.436-.075-.66a.75.75 0 0 0-.75-.75h-.083a.75.75 0 0 0-.75.75v.393c0 .416-.336.752-.752.752-.415 0-.75-.336-.75-.752V7.5a.75.75 0 0 0-1.5 0V6.75a4.502 4.502 0 0 0-4.34 5.454c-.486.067-.972.095-1.46.095a4.5 4.5 0 0 0-.528-.027 4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 0 4.417-5.263l.338-2.251a.75.75 0 0 0-.743-.85h-.342c-.071 0-.142-.003-.211-.008-.258-.017-.514-.043-.766-.079a4.5 4.5 0 0 0-.548 1.764c-.05.216-.075.436-.075.66a.75.75 0 0 0 .75.75h.083a.75.75 0 0 0 .75-.75v-.393c0-.416.336-.752.752-.752.415 0 .75.336.75.752V12Z" />
-              </svg>
-              TypeScript
-            </div>
+          <motion.h1
+            variants={itemVariants}
+            className="text-h1 text-neutral-900 dark:text-dark-text_primary mb-space-24 font-light"
+          >
+            Build React Apps with
+            <span className="block text-brand-orange font-bold">
+              Modern Standards
+            </span>
+          </motion.h1>
 
-            <div className="flex items-center gap-space-8 px-inline-padding py-atom-padding rounded-full bg-secondary-violet/20 text-secondary-violet text-body-m-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-space-16 h-space-16">
-                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.03 9.47a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clipRule="evenodd" />
-              </svg>
-              Redux Toolkit
-            </div>
+          <motion.p
+            variants={itemVariants}
+            className="text-body-xl text-neutral-600 dark:text-dark-text_secondary max-w-3xl mx-auto mb-space-40 leading-relaxed"
+          >
+            A comprehensive React template featuring the latest technologies,
+            BSH design system, and best practices to kickstart your next project
+            with confidence.
+          </motion.p>
 
-            <div className="flex items-center gap-space-8 px-inline-padding py-atom-padding rounded-full bg-secondary-sunset/20 text-secondary-sunset text-body-m-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-space-16 h-space-16">
-                <path d="M16.5 15.75h-3.815a.75.75 0 0 0 0 1.5h3.815a.75.75 0 0 0 0-1.5ZM19.5 12h-3.815a.75.75 0 0 0 0 1.5h3.815a.75.75 0 0 0 0-1.5ZM22.5 8.25H18.75a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5ZM16.826 4.907L9.436 9.412a2.25 2.25 0 0 0-1.12.723L4.474 13.5l-2.008 1.115a.75.75 0 0 0-.348 1.096l2.164 3.906a.75.75 0 0 0 1.096.348l2.008-1.115 3.83-6.903c.595-1.071 1.636-1.636 2.658-1.35.438.118.813.336 1.115.638l7.39-4.505a.75.75 0 0 0-.964-1.246ZM7.768 15.77l.796-.443a2.25 2.25 0 0 1 1.12-.723l7.39-4.505a.75.75 0 0 0-1.096-.348l-7.39 4.505a2.25 2.25 0 0 1-1.12.723l-.796.443Z" />
-              </svg>
-              React Router
-            </div>
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col mobile:flex-row gap-space-16 justify-center items-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group flex items-center gap-space-8 px-space-24 py-space-16 bg-brand-orange text-brand-white rounded-button text-body-m-bold shadow-raised hover:shadow-overlay transition-all duration-200"
+            >
+              Get Started
+              <ArrowRight className="w-space-16 h-space-16 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
 
-            <div className="flex items-center gap-space-8 px-inline-padding py-atom-padding rounded-full bg-ui_green-100 text-ui_green-900 text-body-m-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-space-16 h-space-16">
-                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.85-3.375a.75.75 0 0 0-1.272-.926l-3.365 3.365a.75.75 0 0 0 0 1.06l3.365 3.365a.75.75 0 0 0 1.272-.926L11.516 12l2.584-2.584Z" clipRule="evenodd" />
-              </svg>
-              Tailwind CSS
-            </div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-space-8 px-space-24 py-space-16 border-2 border-neutral-300 dark:border-dark-border text-neutral-700 dark:text-dark-text_primary rounded-button text-body-m-bold hover:border-brand-orange hover:text-brand-orange transition-all duration-200"
+            >
+              <Settings className="w-space-16 h-space-16" />
+              View Components
+            </motion.button>
+          </motion.div>
+        </motion.div>
+
+        {/* Technologies Section */}
+        <motion.div variants={itemVariants} className="mb-space-120">
+          <div className="text-center mb-space-64">
+            <h2 className="text-h3 text-neutral-900 dark:text-dark-text_primary mb-space-16">
+              Built with Powerful Technologies
+            </h2>
+            <p className="text-body-l text-neutral-600 dark:text-dark-text_secondary">
+              Modern tools and frameworks for optimal developer experience
+            </p>
           </div>
-        </div> */}
-        
+
+          <div className="grid grid-cols-2 tablet:grid-cols-4 gap-space-16">
+            {technologies.map((tech) => (
+              <motion.div
+                key={tech.name}
+                variants={itemVariants}
+                whileHover={cardHover}
+                className={`flex flex-col items-center p-space-24 rounded-component-md border ${tech.color} shadow-raised hover:shadow-overlay transition-all duration-200 cursor-pointer`}
+              >
+                <div className="text-2xl mb-space-8">{tech.icon}</div>
+                <h3 className="text-body-m-bold mb-space-4">{tech.name}</h3>
+                <p className="text-body-s text-center opacity-80">
+                  {tech.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Features Section */}
+        <motion.div variants={itemVariants} className="mb-space-120">
+          <div className="text-center mb-space-64">
+            <h2 className="text-h3 text-neutral-900 dark:text-dark-text_primary mb-space-16">
+              Everything You Need to Build
+            </h2>
+            <p className="text-body-l text-neutral-600 dark:text-dark-text_secondary">
+              Pre-configured features to accelerate your development workflow
+            </p>
+          </div>
+
+          <div className="grid tablet:grid-cols-2 web-m:grid-cols-3 gap-space-24">
+            {features.map((feature) => (
+              <motion.div
+                key={feature.title}
+                variants={itemVariants}
+                whileHover={cardHover}
+                className={`p-space-40 rounded-component-lg border-2 ${feature.color} shadow-raised hover:shadow-floating transition-all duration-300 cursor-pointer group`}
+              >
+                <div className="mb-space-24 group-hover:scale-110 transition-transform duration-200">
+                  {feature.icon}
+                </div>
+                <h3 className="text-h5 mb-space-16">{feature.title}</h3>
+                <p className="text-body-m opacity-90 leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Getting Started Section */}
+        <motion.div
+          variants={itemVariants}
+          className="bg-gradient-to-br from-brand-orange/5 to-ui_blue-50 dark:from-dark-surface dark:to-dark-bg rounded-component-lg p-space-64 text-center border border-neutral-200 dark:border-dark-border"
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mx-auto"
+          >
+            <Lightbulb className="w-space-40 h-space-40 text-brand-orange mx-auto mb-space-24" />
+            <h2 className="text-h3 text-neutral-900 dark:text-dark-text_primary mb-space-16">
+              Ready to Start Building?
+            </h2>
+            <p className="text-body-l text-neutral-600 dark:text-dark-text_secondary mb-space-40">
+              This template includes everything you need: components, routing,
+              state management, styling, and development tools. Just clone and
+              start building your amazing application.
+            </p>
+
+            <div className="flex flex-col tablet:flex-row gap-space-16 justify-center">
+              <div className="flex items-center gap-space-8 text-body-m text-neutral-700 dark:text-dark-text_secondary">
+                <Check className="w-space-16 h-space-16 text-ui_green-700" />
+                TypeScript configured
+              </div>
+              <div className="flex items-center gap-space-8 text-body-m text-neutral-700 dark:text-dark-text_secondary">
+                <Check className="w-space-16 h-space-16 text-ui_green-700" />
+                Components ready
+              </div>
+              <div className="flex items-center gap-space-8 text-body-m text-neutral-700 dark:text-dark-text_secondary">
+                <Check className="w-space-16 h-space-16 text-ui_green-700" />
+                Design system included
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Footer */}
+        <motion.div
+          variants={itemVariants}
+          className="text-center mt-space-80 py-space-40 border-t border-neutral-200 dark:border-dark-border"
+        >
+          <p className="text-body-s text-neutral-500 dark:text-dark-text_secondary">
+            BSH React Template • Built with ❤️ for modern React development
+          </p>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
