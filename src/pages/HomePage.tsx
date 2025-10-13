@@ -12,6 +12,7 @@ import {
   Settings,
   Lightbulb,
 } from "lucide-react";
+import Button from "@/components/Button";
 
 const HomePage: React.FC = () => {
   const containerVariants = {
@@ -35,11 +36,6 @@ const HomePage: React.FC = () => {
         ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
-  };
-
-  const cardHover = {
-    scale: 1.05,
-    transition: { duration: 0.2 },
   };
 
   const technologies = [
@@ -140,7 +136,7 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-dark-bg">
+    <div className="overflow-y-scroll h-screen bg-neutral-50 dark:bg-dark-bg w-screen">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -185,14 +181,16 @@ const HomePage: React.FC = () => {
             variants={itemVariants}
             className="flex flex-col mobile:flex-row gap-space-16 justify-center items-center"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-space-8 px-space-24 py-space-16 bg-brand-orange text-brand-white rounded-button text-body-m-bold shadow-raised hover:shadow-overlay transition-all duration-200"
-            >
-              Get Started
-              <ArrowRight className="w-space-16 h-space-16 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                className="flex flex-row items-center gap-space-8"
+                icon={
+                  <ArrowRight className="h-space-16 text-brand-white group-hover:translate-x-1 transition-transform duration-200" />
+                }
+              >
+                Get Started
+              </Button>
+            </motion.div>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -221,8 +219,7 @@ const HomePage: React.FC = () => {
               <motion.div
                 key={tech.name}
                 variants={itemVariants}
-                whileHover={cardHover}
-                className={`flex flex-col items-center p-space-24 rounded-component-md border ${tech.color} shadow-raised hover:shadow-overlay transition-all duration-200 cursor-pointer`}
+                className={`flex flex-col items-center p-space-24 rounded-component-md border ${tech.color} shadow-raised hover:shadow-floating transition-all duration-200 cursor-pointer`}
               >
                 <div className="text-2xl mb-space-8">{tech.icon}</div>
                 <h3 className="text-body-m-bold mb-space-4">{tech.name}</h3>
@@ -250,10 +247,9 @@ const HomePage: React.FC = () => {
               <motion.div
                 key={feature.title}
                 variants={itemVariants}
-                whileHover={cardHover}
                 className={`p-space-40 rounded-component-lg border-2 ${feature.color} shadow-raised hover:shadow-floating transition-all duration-300 cursor-pointer group`}
               >
-                <div className="mb-space-24 group-hover:scale-110 transition-transform duration-200">
+                <div className="mb-space-24 group-transition-transform duration-200">
                   {feature.icon}
                 </div>
                 <h3 className="text-h5 mb-space-16">{feature.title}</h3>
@@ -309,7 +305,16 @@ const HomePage: React.FC = () => {
           className="text-center mt-space-80 py-space-40 border-t border-neutral-200 dark:border-dark-border"
         >
           <p className="text-body-s text-neutral-500 dark:text-dark-text_secondary">
-            BSH React Template • Built with ❤️ for modern React development
+            BSH React Template • Built with ❤️ for modern React development by{" "}
+            <a
+              href="https://aim.bshg.com"
+              target="_blank"
+              referrerPolicy="no-referrer"
+              className="text-brand-orange hover:text-brand-black hover:underline hover:underline-offset-4 transition-all duration-200 font-medium"
+            >
+              AIM
+            </a>{" "}
+            Front-End Team
           </p>
         </motion.div>
       </motion.div>
