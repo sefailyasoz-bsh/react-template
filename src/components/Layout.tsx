@@ -1,14 +1,13 @@
-import { Drawer } from './Drawer'
-import { Outlet } from 'react-router'
-
+import { Drawer } from "./Drawer";
+import { Outlet } from "react-router";
 
 const Layout = () => {
   return (
-    <div className='flex'>
-        <Drawer />
-        <Outlet />
+    <div className="flex">
+      <Drawer />
+      <Outlet />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
